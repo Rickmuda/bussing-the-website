@@ -1,0 +1,334 @@
+/* Global styles */
+#app {
+  font-family: Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+/* Layout */
+header {
+  line-height: 1.5;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
+
+/* Landing page */
+.landing-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Player setup */
+.player-setup {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.player-input {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.player-input input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #2196F3;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Media Queries */
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+.game-board {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.game-info {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.players-list {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.players-list span.active {
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+.card-area {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.card {
+  width: 90px; /* 25% smaller from 120px */
+  height: 135px; /* 25% smaller from 180px */
+  border: 2px solid #000;
+  border-radius: 8px; /* Slightly smaller border radius */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem; /* Smaller font size */
+  background: white;
+  flex-shrink: 0; /* Prevent cards from shrinking */
+  transition: all 0.3s ease;
+}
+
+.card.red {
+  color: red;
+}
+
+.card.black {
+  color: black;
+}
+
+.choice-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.bus-building {
+  margin-top: 2rem;
+}
+
+.game-over {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.message.incorrect {
+  background-color: #ff4444;
+  color: white;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+/* Player cards display */
+.players-cards {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(245, 245, 245, 0.95);
+  z-index: 100;
+  gap: 1rem;
+}
+
+.player-cards {
+  display: none; /* Hidden by default */
+  background: #f5f5f5;
+  padding: 1rem;
+  border-radius: 8px 8px 0 0;
+  min-width: 150px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+/* Show active player's cards in normal rounds */
+.game-board:not(.pyramid-container) .player-cards.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Show ALL player cards during pyramid round */
+.pyramid-container ~ .players-cards .player-cards {
+  display: block;
+  opacity: 1;
+  flex: 1;
+  max-width: 250px;
+}
+
+/* Show all player cards in pyramid round */
+.pyramid-container .players-cards .player-cards {
+  display: block;
+  opacity: 1;
+  flex: 1;
+  max-width: 300px;
+}
+
+/* Keep active player highlight in non-pyramid rounds */
+.player-cards.active {
+  display: block;
+  opacity: 1;
+}
+
+.cards-row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 0.5rem;
+}
+
+/* Add transition for card removal */
+.card.removing {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* Pyramid styles */
+.pyramid-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 200px); /* Full height minus space for player cards */
+  margin-bottom: 100px; /* Space for player cards */
+}
+
+.pyramid {
+  display: flex;
+  flex-direction: row; /* Changed from column to row */
+  justify-content: center;
+  gap: 2rem; /* Increased gap between rows */
+  margin: 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+}
+
+.pyramid-row {
+  display: flex;
+  flex-direction: column; /* Changed from row to column */
+  justify-content: center;
+  gap: 1rem;
+}
+
+.pyramid-card {
+  perspective: 1000px;
+  cursor: pointer;
+  width: 100px;
+  height: 150px;
+  position: relative;
+}
+
+.pyramid-card .card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #000;
+  border-radius: 10px;
+}
+
+.card-front {
+  background: white;
+  transform: rotateY(180deg);
+}
+
+.card-back {
+  background: linear-gradient(45deg, #1a237e, #0d47a1);
+  transform: rotateY(0deg);
+}
+
+/* Update flipped state to target the card element */
+.pyramid-card.flipped .card {
+  transform: rotateY(180deg);
+}
+
+.pyramid-card.flipped .card-front {
+  transform: rotateY(0deg);
+}
+
+.pyramid-card.flipped .card-back {
+  transform: rotateY(-180deg);
+}
