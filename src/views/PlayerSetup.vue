@@ -17,7 +17,13 @@
         </button>
       </div>
     </div>
-    <button @click="addPlayer" class="btn btn-secondary">Add Player</button>
+    <button 
+      @click="addPlayer" 
+      class="btn btn-secondary"
+      :disabled="players.length >= 6"
+    >
+      Add Player
+    </button>
     <button 
       @click="startGame" 
       class="btn btn-primary"
@@ -34,13 +40,16 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const players = ref(['', ''])
+const MAX_PLAYERS = 6
 
 const canStartGame = computed(() => {
   return players.value.filter(p => p.trim()).length >= 2
 })
 
 const addPlayer = () => {
-  players.value.push('')
+  if (players.value.length < MAX_PLAYERS) {
+    players.value.push('')
+  }
 }
 
 const removePlayer = (index) => {
@@ -51,7 +60,7 @@ const removePlayer = (index) => {
 
 const startGame = () => {
   const validPlayers = players.value.filter(p => p.trim())
-  if (validPlayers.length >= 2) {
+  if (validPlayers.length >= 2 && validPlayers.length <= MAX_PLAYERS) {
     localStorage.setItem('players', JSON.stringify(validPlayers))
     router.push('/game')
   }
