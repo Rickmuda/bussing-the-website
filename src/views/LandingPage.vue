@@ -1,7 +1,8 @@
 <template>
   <div class="landing-page">
-    <h1 class="title">Welcome to Bussen</h1>
-    <p>The Ultimate Drinking Game</p>
+    <div class="logo-container">
+      <img src="/img/bussingthewebsite.webp" alt="Bussen - The Ultimate Drinking Game" class="game-logo">
+    </div>
     <button class="btn btn-primary" @click="$router.push('/setup')">
       Start Game
     </button>

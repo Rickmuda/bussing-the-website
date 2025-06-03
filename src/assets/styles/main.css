@@ -4,7 +4,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #788374;
   margin-top: 60px;
 }
 
@@ -499,4 +499,15 @@ header {
 .card-back {
   transform: rotateY(0deg);
   transition: transform 0.5s;
+}
+
+.logo-container {
+  margin-bottom: 2rem;
+}
+
+.game-logo {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
