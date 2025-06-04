@@ -8,29 +8,31 @@
           :placeholder="'Player ' + (index + 1)"
           type="text"
         >
-        <button 
-          @click="removePlayer(index)" 
-          class="btn btn-danger"
-          :disabled="players.length <= 2"
-        >
-          X
-        </button>
       </div>
     </div>
-    <button 
-      @click="addPlayer" 
-      class="btn btn-secondary"
-      :disabled="players.length >= 6"
-    >
-      Add Player
-    </button>
-    <button 
-      @click="startGame" 
-      class="btn btn-primary"
-      :disabled="!canStartGame"
-    >
-      Start Game
-    </button>
+    <div class="setup-buttons">
+      <button 
+        @click="removePlayer" 
+        class="btn btn-danger"
+        :disabled="players.length <= 2"
+      >
+        Remove Player
+      </button>
+      <button 
+        @click="addPlayer" 
+        class="btn btn-secondary"
+        :disabled="players.length >= 6"
+      >
+        Add Player
+      </button>
+      <button 
+        @click="startGame" 
+        class="btn btn-primary"
+        :disabled="!canStartGame"
+      >
+        Start Game
+      </button>
+    </div>
   </div>
 </template>
 
@@ -52,9 +54,9 @@ const addPlayer = () => {
   }
 }
 
-const removePlayer = (index) => {
+const removePlayer = () => {
   if (players.value.length > 2) {
-    players.value.splice(index, 1)
+    players.value.pop() // Remove last player
   }
 }
 
