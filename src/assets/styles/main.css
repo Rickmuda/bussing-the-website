@@ -437,29 +437,6 @@ header {
   font-weight: bold;
 }
 
-/* First card message styling */
-.first-card-message {
-  text-align: center;
-  margin: 1rem 0;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  border: 2px solid #2196F3;
-}
-
-.first-card-message h4 {
-  color: white;
-  margin-bottom: 0.5rem;
-  font-size: 1.3rem;
-}
-
-.first-card-message p {
-  color: white;
-  font-size: 1.1rem;
-  margin: 0;
-  opacity: 0.9;
-}
-
 /* Bus cards grid layout */
 .bus-cards-grid {
   display: grid;

@@ -30,12 +30,6 @@
         <p v-if="busCurrentIndex >= 5" class="checkpoint-info">✓ Checkpoint reached!</p>
       </div>
       
-      <!-- Show message for first card -->
-      <div v-if="busCurrentIndex === 0" class="first-card-message">
-        <h4>First card - no comparison needed!</h4>
-        <p>Press either button to draw the first card</p>
-      </div>
-      
       <!-- Show all bus cards with current one highlighted -->
       <div class="bus-cards-grid">
         <div v-for="(card, index) in busCards" 
@@ -54,7 +48,7 @@
         </div>
       </div>
       
-      <div v-if="!gameOver && busCurrentIndex < busLength && !showBusResult" class="choice-buttons">
+      <div v-if="!gameOver && busCurrentIndex < busLength" class="choice-buttons">
         <button @click="makeBusGuess('higher')" class="btn btn-primary">Higher</button>
         <button @click="makeBusGuess('lower')" class="btn btn-primary">Lower</button>
       </div>
